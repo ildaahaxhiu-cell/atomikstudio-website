@@ -1,7 +1,14 @@
 import type { Media, Project, Settings } from './types'
 
-// Sample content used when Sanity is not connected or has no projects yet.
-// Project facts come from Atomik's Instagram posts; descriptions are drafts to confirm.
+// All site content. Project facts come from Atomik's Instagram posts; descriptions are drafts to confirm.
+//
+// Adding real images: put files in public/work/<slug>/ and replace a project's `placeholders(...)`
+// with `images('<slug>', [['01.jpg', 1600, 900, 'Alt text'], ...])` (width and height in pixels).
+// Wide images run full width on the case study, tall ones are paired. The first is the cover.
+
+export function images(slug: string, files: [file: string, w: number, h: number, alt: string][]): Media[] {
+  return files.map(([file, w, h, alt]) => ({ key: `${slug}-${file}`, kind: 'image', src: `/work/${slug}/${file}`, alt, w, h }))
+}
 
 const ratios: [number, number][] = [
   [16, 9],
@@ -25,7 +32,7 @@ function placeholders(name: string): Media[] {
   }))
 }
 
-export const seedProjects: Project[] = [
+export const projects: Project[] = [
   {
     slug: 'skin-puls',
     name: 'Skin Puls',
@@ -93,7 +100,7 @@ export const seedProjects: Project[] = [
   },
 ]
 
-export const seedSettings: Settings = {
+export const settings: Settings = {
   email: 'hello@atomik.studio',
   instagram: 'https://www.instagram.com/atomikkstudio/',
   city: 'Tirana',

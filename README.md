@@ -1,6 +1,6 @@
 # Atomik Studio
 
-Website for Atomik Studio. Next.js 16 (App Router), Sanity for content, GSAP + Lenis for scroll motion.
+Website for Atomik Studio. Next.js 16 (App Router), GSAP + Lenis for scroll motion. Content lives in the repo.
 
 ## Run
 
@@ -19,13 +19,12 @@ pnpm build
 | `/work/[slug]` | Case study: title, facts, cover that opens to full bleed, paired images, credits, next project |
 | `/studio` | About, how we work, services, clients, Tirana clock |
 | `/contact` | Enquiry form (sent via Resend), email, location |
-| `/admin` | Sanity Studio for editing projects and site settings |
 
 ## Content
 
-Without `NEXT_PUBLIC_SANITY_PROJECT_ID` the site runs on the sample content in `lib/seed.ts`, which uses typographic placeholders instead of images. Once Sanity is connected, projects and site settings come from there; any setting left empty falls back to the sample.
+Everything is in `lib/data.ts`: projects (name, sector, services, copy, credits, images) and site settings (email, statement, services, clients, how we work).
 
-To connect Sanity: create a project at sanity.io/manage, add the project ID to `.env.local` and Vercel, and add `http://localhost:3030` plus the live domain as CORS origins (with credentials).
+Projects without images show typographic placeholders. To add real images, put them in `public/work/<slug>/` and swap the project's `placeholders(...)` for `images('<slug>', [['01.jpg', 1600, 900, 'Alt text'], ...])`. The first image is the cover; wide images run full width on the case study and tall ones are paired.
 
 ## Contact form
 
