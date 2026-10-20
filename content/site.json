@@ -73,7 +73,11 @@
         "title": "Launch",
         "text": "We prepare the files, guidelines and handover, and stay on after launch to help the brand settle in."
       }
-    ]
+    ],
+    "currency": "USD",
+    "legalName": "Atomik Studio",
+    "address": "",
+    "registration": ""
   },
   "projects": [
     {
@@ -192,5 +196,108 @@
       ],
       "media": []
     }
-  ]
+  ],
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "updated": "2026-10-20",
+      "intro": "This policy explains what personal data {company} collects through this website and the enquiries we receive, why we use it, and the choices you have.",
+      "sections": [
+        {
+          "heading": "Who we are",
+          "body": "{company} is a design studio based in {city}, {country}. We decide how and why the personal data described here is used, which makes us the data controller.\n\n{details}\n\nFor anything about your data, write to {email}."
+        },
+        {
+          "heading": "What we collect",
+          "body": "- Enquiries. When you use the contact form or email us, we receive your name, email address, company, the services and budget you choose, and your message.\n- Technical data. Our hosting provider records basic request data such as IP address, browser type and the pages requested, to keep the site secure and working.\n- Advertising and analytics data. We do not use analytics or advertising cookies at the moment. If we add them, we will only collect this data with your consent. See the Cookie Policy.\n\nWe do not ask for sensitive data and we do not knowingly collect data from children."
+        },
+        {
+          "heading": "Why we use it",
+          "body": "- To reply to your enquiry and prepare a proposal, because you asked us to (steps before a contract).\n- To deliver and manage a project once we work together (performance of a contract).\n- To keep the site secure and understand how it is used (our legitimate interests).\n- To measure and improve our advertising, only with your consent.\n- To keep business and tax records (legal obligation)."
+        },
+        {
+          "heading": "Who we share it with",
+          "body": "We never sell your data. We share it only with providers that help us run the studio and the site, under contracts that require them to protect it:\n\n- Vercel, which hosts this website.\n- Our email provider, which delivers contact form messages to us.\n- If we add them later, advertising and analytics partners such as Meta and Google, only with your consent.\n\nSome of these providers are based outside Albania and the European Economic Area, including in the United States. Where that happens, we rely on the safeguards the law requires, such as standard contractual clauses."
+        },
+        {
+          "heading": "How long we keep it",
+          "body": "We keep enquiries for up to two years after our last contact, unless we start working together. Project and client records are kept for as long as the law requires for accounting and tax, usually up to ten years. Technical logs are kept by our hosting provider for a short period."
+        },
+        {
+          "heading": "Your rights",
+          "body": "Under the Albanian law on personal data protection and, where it applies, the EU General Data Protection Regulation, you can ask us to:\n\n- show you the data we hold about you,\n- correct or delete it,\n- restrict or object to how we use it,\n- send it to you or another company in a common format,\n- withdraw your consent at any time, without affecting earlier use.\n\nWrite to {email} and we will reply within one month. You can also complain to the Information and Data Protection Commissioner in Albania, or to the data protection authority where you live."
+        },
+        {
+          "heading": "Security",
+          "body": "We use reputable providers, encrypted connections and limited access to protect your data. No system is completely secure, so please do not send passwords or payment details through the contact form."
+        },
+        {
+          "heading": "Changes",
+          "body": "We may update this policy. The date at the top shows the latest version. If a change is significant, we will say so on this page."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms of Use",
+      "updated": "2026-10-20",
+      "intro": "These terms apply to your use of this website, run by {company}. By using the site you agree to them.",
+      "sections": [
+        {
+          "heading": "About this site",
+          "body": "This website presents the work and services of {company}. It is for general information. Nothing on it is an offer to provide services on particular terms; every project is agreed separately in writing."
+        },
+        {
+          "heading": "Project costs",
+          "body": "Where a project page says what a similar project costs, the figure is an indication based on past work. It is not a quote. The cost of your project depends on its scope, timeline and requirements, and is set out in a written proposal."
+        },
+        {
+          "heading": "Our work and intellectual property",
+          "body": "The design, text, images, logos and other content on this site belong to {company} or to our clients and partners, and are protected by copyright and other laws. Client work is shown with permission. You may view and share links to the site, but you may not copy, reproduce or reuse its content without written permission."
+        },
+        {
+          "heading": "Using the site",
+          "body": "Please do not misuse the site, for example by trying to gain unauthorised access, interfering with how it works, sending spam through the contact form or collecting data from it automatically."
+        },
+        {
+          "heading": "Links to other sites",
+          "body": "The site links to other websites, such as Instagram. We do not control them and are not responsible for their content or privacy practices."
+        },
+        {
+          "heading": "Liability",
+          "body": "We work to keep the site accurate and available, but we provide it as it is, without guarantees. To the extent the law allows, {company} is not liable for any loss arising from use of the site. Nothing in these terms limits liability that cannot be limited by law."
+        },
+        {
+          "heading": "Law and disputes",
+          "body": "These terms are governed by the laws of the Republic of Albania. Disputes will be handled by the competent courts of {city}, unless the law where you live gives you other rights."
+        },
+        {
+          "heading": "Contact",
+          "body": "{details}\n\nQuestions about these terms: {email}."
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Cookie Policy",
+      "updated": "2026-10-20",
+      "intro": "This policy explains the cookies and similar technologies used on this website and how you can control them.",
+      "sections": [
+        {
+          "heading": "What cookies are",
+          "body": "Cookies are small files a website stores on your device. Some are needed for the site to work. Others help us understand visits and measure advertising, and we only use those if you agree."
+        },
+        {
+          "heading": "Cookies we use",
+          "body": "- Strictly necessary. A session cookie that keeps the studio team signed in to the site editor. It is only set for the team and does not need consent.\n\nAt the moment we do not use analytics or advertising cookies. If we add them, for example to measure ads with partners such as Meta or Google, we will ask for your consent first and list each one here."
+        },
+        {
+          "heading": "Your choices",
+          "body": "You can block or delete cookies in your browser settings; the site works without them. If we introduce analytics or advertising cookies, you will be able to accept or decline them when you visit and change your choice at any time."
+        },
+        {
+          "heading": "Contact",
+          "body": "Questions about cookies: {email}."
+        }
+      ]
+    }
+  }
 }

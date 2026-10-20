@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CopyEmail from '@/components/CopyEmail'
 import EnquiryForm from '@/components/EnquiryForm'
 import SplitTitle from '@/components/SplitTitle'
-import { getSettings } from '@/lib/content'
+import { getProjects, getSettings } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 }
 
 export default async function ContactPage() {
-  const s = await getSettings()
+  const [s, projects] = await Promise.all([getSettings(), getProjects()])
   return (
     <div className="page">
       <header className="ptitle pad">
@@ -21,7 +21,7 @@ export default async function ContactPage() {
         </div>
       </header>
       <section className="contact pad">
-        <EnquiryForm email={s.email} />
+        <EnquiryForm email={s.email} currency={s.currency} projects={Object.fromEntries(projects.map((p) => [p.slug, p.name]))} />
         <aside className="aside">
           <div>
             <span className="grey">Email</span>

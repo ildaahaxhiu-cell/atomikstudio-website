@@ -29,6 +29,8 @@ export type Project = {
   media: Media[]
   credits: Credit[]
   featured: boolean
+  /** Typical cost of a similar project, in settings.currency. Hidden when empty. */
+  cost?: number
 }
 
 export type Service = { name: Discipline; description: string; items: string[] }
@@ -43,6 +45,12 @@ export type Settings = {
   clients: string[]
   services: Service[]
   approach: { title: string; text: string }[]
+  /** ISO currency for project costs and the contact form budgets, e.g. "USD". */
+  currency: string
+  /** Legal entity details shown on the legal pages. */
+  legalName: string
+  address: string
+  registration: string
 }
 
 /** An uploaded image as stored in content/site.json. */
@@ -51,4 +59,8 @@ export type StoredImage = { src: string; alt: string; w: number; h: number }
 /** A project as stored; `media` holds only real images (placeholders are generated when empty). */
 export type StoredProject = Omit<Project, 'media'> & { media: StoredImage[] }
 
-export type SiteContent = { settings: Settings; projects: StoredProject[] }
+export type LegalSection = { heading: string; body: string }
+export type LegalPage = { title: string; updated: string; intro: string; sections: LegalSection[] }
+export type LegalKey = 'privacy' | 'terms' | 'cookies'
+
+export type SiteContent = { settings: Settings; projects: StoredProject[]; legal: Record<LegalKey, LegalPage> }

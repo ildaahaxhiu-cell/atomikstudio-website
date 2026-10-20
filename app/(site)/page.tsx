@@ -47,7 +47,7 @@ export default async function Home() {
           <span>Selected work</span>
           <span>{pad2(featured.length)} projects</span>
         </div>
-        <ProjectCards projects={featured} />
+        <ProjectCards projects={featured} currency={settings.currency} />
       </section>
 
       <section className="index pad" aria-label="Project index">

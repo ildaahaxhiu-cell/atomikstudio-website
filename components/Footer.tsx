@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Settings } from '@/lib/types'
 import CopyEmail from './CopyEmail'
 import Marquee from './Marquee'
@@ -23,8 +24,13 @@ export default function Footer({ settings }: { settings: Settings }) {
         </div>
         <div className="x">
           <span className="k">© {new Date().getFullYear()}</span>
-          Atomik Studio
+          {settings.legalName || 'Atomik Studio'}
         </div>
+        <nav className="legal-links" aria-label="Legal">
+          <Link href="/privacy">Privacy Policy</Link>
+          <Link href="/terms">Terms of Use</Link>
+          <Link href="/cookies">Cookie Policy</Link>
+        </nav>
       </footer>
     </>
   )

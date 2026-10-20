@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import LegalView from './LegalView'
 import ProjectEditor from './ProjectEditor'
 import ProjectsView from './ProjectsView'
 import SettingsView from './SettingsView'
@@ -114,6 +115,9 @@ export default function AdminApp({ initial, mode }: { initial: SiteContent; mode
           <a className="pill" href="#settings" aria-current={view === 'settings' ? 'page' : undefined}>
             Site
           </a>
+          <a className="pill" href="#legal" aria-current={view === 'legal' ? 'page' : undefined}>
+            Legal
+          </a>
           <Link className="pill" href="/" target="_blank">
             View site ↗
           </Link>
@@ -145,6 +149,8 @@ export default function AdminApp({ initial, mode }: { initial: SiteContent; mode
       <main className="apage">
         {view === 'settings' ? (
           <SettingsView />
+        ) : view === 'legal' ? (
+          <LegalView />
         ) : index >= 0 ? (
           <ProjectEditor key={index} index={index} />
         ) : (

@@ -2,7 +2,7 @@ import 'server-only'
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import site from '@/content/site.json'
-import type { Media, Project, SiteContent, StoredProject } from './types'
+import type { LegalKey, Media, Project, SiteContent, StoredProject } from './types'
 
 // Site content is content/site.json, edited through /admin. Production is rebuilt on every publish,
 // so it uses the bundled copy; local dev re-reads the file so editor saves show up straight away.
@@ -37,4 +37,8 @@ export async function getProject(slug: string) {
 
 export async function getSettings() {
   return load().settings
+}
+
+export async function getLegal(key: LegalKey) {
+  return load().legal?.[key] ?? null
 }

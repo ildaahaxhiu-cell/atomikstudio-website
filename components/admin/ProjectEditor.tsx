@@ -6,6 +6,7 @@ import { prepareImage } from './image'
 import Thumb, { Img } from './Thumb'
 import { Area, Chips, ConfirmButton, Field, move, Section, Tags, Text } from './ui'
 import { slugify } from '@/lib/admin/validate'
+import { money } from '@/lib/format'
 import { DISCIPLINES, type Discipline, type StoredProject } from '@/lib/types'
 
 export default function ProjectEditor({ index }: { index: number }) {
@@ -81,6 +82,13 @@ export default function ProjectEditor({ index }: { index: number }) {
           <Section title="Details">
             <Text label="Sector" value={p.sector} onChange={(v) => update({ sector: v })} placeholder="e.g. Aesthetic clinic" />
             <Text label="Year" value={p.year ? String(p.year) : ''} onChange={(v) => update({ year: v ? Number(v.replace(/\D/g, '').slice(0, 4)) || undefined : undefined })} placeholder="2026" />
+            <Text
+              label={`Similar project cost (${content.settings.currency})`}
+              value={p.cost ? String(p.cost) : ''}
+              onChange={(v) => update({ cost: Number(v.replace(/[^0-9]/g, '')) || undefined })}
+              placeholder="8000"
+              hint={p.cost ? `Shows as: A similar project costs about ${money(p.cost, content.settings.currency)}` : 'Leave empty to hide it on the site.'}
+            />
             <Text label="Web address" value={p.slug} onChange={setSlug} hint={`/work/${p.slug || '…'}`} wide />
             <Field label="Disciplines" hint="Used for the filters on the Work page." wide>
               {() => <Chips options={DISCIPLINES} value={p.disciplines} onChange={(v) => update({ disciplines: v as Discipline[] })} />}
@@ -218,6 +226,7 @@ export default function ProjectEditor({ index }: { index: number }) {
               ))}
             </div>
             <p>{p.summary || 'The summary appears here.'}</p>
+            {p.cost ? <span className="grey" style={{ fontSize: 14 }}>A similar project costs about {money(p.cost, content.settings.currency)}</span> : null}
           </div>
           <a className="linkbtn" href={`/work/${p.slug}`} target="_blank" rel="noopener">
             Open the published page ↗

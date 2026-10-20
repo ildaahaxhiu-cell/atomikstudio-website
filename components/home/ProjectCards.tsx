@@ -4,12 +4,13 @@ import Link from 'next/link'
 import { useRef } from 'react'
 import StoryMedia from '../StoryMedia'
 import { gsap, useGSAP } from '@/lib/gsap'
+import { money } from '@/lib/format'
 import type { Project } from '@/lib/types'
 
 const pad2 = (n: number) => String(n).padStart(2, '0')
 
 /** Sticky full-screen project cards; each new card pushes the previous one back. */
-export default function ProjectCards({ projects }: { projects: Project[] }) {
+export default function ProjectCards({ projects, currency }: { projects: Project[]; currency: string }) {
   const ref = useRef<HTMLDivElement>(null)
   useGSAP(
     () => {
@@ -49,6 +50,7 @@ export default function ProjectCards({ projects }: { projects: Project[] }) {
               </div>
               <div style={{ display: 'grid', gap: 16 }}>
                 <p>{p.summary}</p>
+                {p.cost ? <span className="cost-line">A similar project costs about {money(p.cost, currency)}</span> : null}
                 <Link className="open" href={`/work/${p.slug}`}>
                   View project
                 </Link>

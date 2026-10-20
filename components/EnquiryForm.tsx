@@ -1,9 +1,18 @@
 'use client'
 
-import { useState, type FormEvent } from 'react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { DISCIPLINES } from '@/lib/types'
 
-const BUDGETS = ['Under €5k', '€5–15k', '€15–40k', '€40k+', 'Not sure yet']
+function budgets(currency: string) {
+  let f: (n: number) => string
+  try {
+    const nf = new Intl.NumberFormat('en-US', { style: 'currency', currency: currency || 'USD', notation: 'compact', maximumFractionDigits: 0 })
+    f = (n) => nf.format(n)
+  } catch {
+    f = (n) => `${n / 1000}k ${currency}`
+  }
+  return [`Under ${f(5000)}`, `${f(5000)}–${f(15000)}`, `${f(15000)}–${f(40000)}`, `${f(40000)}+`, 'Not sure yet']
+}
 type Status = { kind: 'idle' | 'sending' | 'sent' | 'error'; message?: string }
 
 function Toggle({ options, value, onChange, multi }: { options: string[]; value: string[]; onChange: (v: string[]) => void; multi?: boolean }) {
@@ -27,7 +36,15 @@ function Toggle({ options, value, onChange, multi }: { options: string[]; value:
   )
 }
 
-export default function EnquiryForm({ email }: { email: string }) {
+export default function EnquiryForm({ email, currency, projects }: { email: string; currency: string; projects: Record<string, string> }) {
+  const BUDGETS = budgets(currency)
+  const message = useRef<HTMLTextAreaElement>(null)
+
+  // Arriving from a case study ("Start a similar project"): note which one.
+  useEffect(() => {
+    const name = projects[new URLSearchParams(location.search).get('project') ?? '']
+    if (name && message.current && !message.current.value) message.current.value = `We would like something similar to your ${name} project. `
+  }, [projects])
   const [services, setServices] = useState<string[]>([])
   const [budget, setBudget] = useState<string[]>([])
   const [status, setStatus] = useState<Status>({ kind: 'idle' })
@@ -98,7 +115,7 @@ export default function EnquiryForm({ email }: { email: string }) {
       </fieldset>
       <div className="field">
         <label htmlFor="f-message">About the project</label>
-        <textarea className="input" id="f-message" name="message" required placeholder="What are you making, and when does it need to launch?" />
+        <textarea ref={message} className="input" id="f-message" name="message" required placeholder="What are you making, and when does it need to launch?" />
       </div>
       <input type="text" name="website" tabIndex={-1} autoComplete="off" className="sr" aria-hidden="true" />
       {status.kind === 'error' && (

@@ -1,7 +1,8 @@
 'use client'
 
 import { useAdmin } from './AdminApp'
-import { Area, ConfirmButton, move, Section, Tags, Text } from './ui'
+import { Area, Chips, ConfirmButton, Field, move, Section, Tags, Text } from './ui'
+import { CURRENCIES } from '@/lib/admin/validate'
 import type { Settings } from '@/lib/types'
 
 export default function SettingsView() {
@@ -24,6 +25,15 @@ export default function SettingsView() {
           <Text label="Instagram link" value={s.instagram} onChange={(v) => update({ instagram: v })} placeholder="https://www.instagram.com/…" />
           <Text label="City" value={s.city} onChange={(v) => update({ city: v })} />
           <Text label="Country" value={s.country} onChange={(v) => update({ country: v })} />
+        </Section>
+
+        <Section title="Company" note="Used on the legal pages and in the footer">
+          <Text label="Legal name" value={s.legalName} onChange={(v) => update({ legalName: v })} placeholder="Atomik Studio" />
+          <Text label="Registration number (NUIS)" value={s.registration} onChange={(v) => update({ registration: v })} placeholder="Optional" />
+          <Text label="Registered address" value={s.address} onChange={(v) => update({ address: v })} placeholder={`Street, ${s.city}, ${s.country}`} wide />
+          <Field label="Currency" hint="For project costs and the budget options on the contact form." wide>
+            {() => <Chips single options={CURRENCIES} value={[s.currency]} onChange={(v) => v[0] && update({ currency: v[0] })} />}
+          </Field>
         </Section>
 
         <Section title="Homepage">

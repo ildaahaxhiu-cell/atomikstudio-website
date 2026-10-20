@@ -191,7 +191,7 @@ main { min-height: 100svh; }
 .case-head h1 { margin: 0; font-weight: 500; font-size: clamp(56px, 11vw, 200px); line-height: 0.84; letter-spacing: -0.06em; text-wrap: balance; max-width: 12em; }
 .case-head h1 .ln { display: block; overflow: hidden; padding-bottom: 0.05em; }
 .case-head h1 .ln > span { display: inline-block; }
-.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; border-top: 1px solid var(--ink); padding-top: 14px; font-size: 15px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; border-top: 1px solid var(--ink); padding-top: 14px; font-size: 15px; }
 .facts div { display: grid; gap: 4px; align-content: start; min-width: 0; }
 .facts dt { color: var(--grey); }
 .facts dd { margin: 0; }
@@ -265,3 +265,32 @@ textarea.input { resize: vertical; min-height: 140px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+/* ---------- legal ---------- */
+.chip[aria-current='page'] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.legal { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 0 20px; padding-bottom: 16vh; }
+.legal .lead { grid-column: 4 / span 8; margin: 0 0 10vh; font-size: clamp(22px, 2.4vw, 36px); line-height: 1.2; letter-spacing: -0.03em; text-wrap: pretty; }
+.lsec { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; border-top: 1px solid var(--ink); padding-block: 16px 7vh; }
+.lsec > span { grid-column: 1 / span 3; }
+.lsec > div { grid-column: 4 / span 7; min-width: 0; }
+.lsec h2 { margin: 0 0 18px; font-weight: 400; font-size: clamp(26px, 2.6vw, 40px); line-height: 1; letter-spacing: -0.035em; }
+.lsec p, .lsec li { font-size: 17px; line-height: 1.6; max-width: 62ch; }
+.lsec p { margin: 0 0 1em; }
+.lsec ul { margin: 0 0 1em; padding-left: 1.1em; display: grid; gap: 6px; }
+@media (max-width: 760px) {
+  .legal .lead, .lsec > span, .lsec > div { grid-column: 1 / -1; }
+  .lsec { gap: 10px; }
+}
+.legal-links { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px 20px; padding-top: 10px; border-top: 1px solid var(--line); font-size: 14px; color: var(--grey); }
+.legal-links a:hover { color: var(--ink); }
+
+/* ---------- project cost ---------- */
+.cost { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px; border-top: 1px solid var(--ink); padding-block: 14px 16vh; }
+.cost .lab { grid-column: 1 / span 3; }
+.cost > div { grid-column: 4 / -1; display: grid; gap: 18px; justify-items: start; }
+.cost .big { margin: 0; font-size: clamp(30px, 4.2vw, 64px); line-height: 1.04; letter-spacing: -0.04em; max-width: 18em; text-wrap: balance; }
+.cost .big b { font-weight: 500; }
+.cost .grey { margin: 0; font-size: 15px; max-width: 52ch; }
+.cost .send { text-decoration: none; display: inline-block; }
+.meta .cost-line { font-size: 14px; color: var(--grey); }
+@media (max-width: 760px) { .cost .lab, .cost > div { grid-column: 1 / -1; } }

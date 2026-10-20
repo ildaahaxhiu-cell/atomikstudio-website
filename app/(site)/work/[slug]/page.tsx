@@ -6,7 +6,8 @@ import Frame from '@/components/Frame'
 import InkText from '@/components/InkText'
 import Rise from '@/components/Rise'
 import SplitTitle from '@/components/SplitTitle'
-import { getProject, getProjects } from '@/lib/content'
+import { getProject, getProjects, getSettings } from '@/lib/content'
+import { money } from '@/lib/format'
 import type { Media } from '@/lib/types'
 
 export async function generateStaticParams() {
@@ -59,7 +60,7 @@ const pad2 = (n: number) => String(n).padStart(2, '0')
 
 export default async function CasePage(props: PageProps<'/work/[slug]'>) {
   const { slug } = await props.params
-  const data = await getProject(slug)
+  const [data, settings] = await Promise.all([getProject(slug), getSettings()])
   if (!data) notFound()
   const { project: p, index, total, next } = data
   const [cover, ...rest] = p.media
@@ -92,6 +93,12 @@ export default async function CasePage(props: PageProps<'/work/[slug]'>) {
             <dt>Year</dt>
             <dd>{p.year ?? '-'}</dd>
           </div>
+          {p.cost ? (
+            <div>
+              <dt>Similar project</dt>
+              <dd>about {money(p.cost, settings.currency)}</dd>
+            </div>
+          ) : null}
         </dl>
       </header>
 
@@ -115,6 +122,21 @@ export default async function CasePage(props: PageProps<'/work/[slug]'>) {
           </div>
         ))}
       </Rise>
+
+      {p.cost ? (
+        <section className="cost pad" aria-label="Project cost">
+          <span className="lab mono">Budget</span>
+          <div>
+            <p className="big">
+              A similar project costs about <b>{money(p.cost, settings.currency)}</b>.
+            </p>
+            <p className="grey">An indication from past work, not a quote. Every project is priced in a written proposal.</p>
+            <Link className="send" href={`/contact?project=${p.slug}`}>
+              Start a similar project
+            </Link>
+          </div>
+        </section>
+      ) : null}
 
       {p.credits.length > 0 && (
         <section className="credits pad">
