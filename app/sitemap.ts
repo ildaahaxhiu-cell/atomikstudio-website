@@ -1,7 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { getProjects } from '@/lib/content'
-
-const site = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3030'
+import { SITE_URL as site } from '@/lib/site'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const projects = await getProjects()

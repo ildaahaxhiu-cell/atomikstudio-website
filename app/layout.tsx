@@ -1,11 +1,10 @@
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
+import { SITE_URL as site } from '@/lib/site'
 import './globals.css'
 
 const geist = Geist({ subsets: ['latin', 'latin-ext'], variable: '--font-geist', weight: ['300', '400', '500'] })
 const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono', weight: ['400'] })
-
-const site = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3030'
 
 export const metadata: Metadata = {
   metadataBase: new URL(site),
