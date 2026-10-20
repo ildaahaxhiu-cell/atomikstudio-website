@@ -33,3 +33,15 @@ Set `RESEND_API_KEY`, `ENQUIRY_TO` and `ENQUIRY_FROM` (a sender on a domain veri
 ## Motion
 
 All scroll effects live in `components/` and use `gsap.matchMedia`, so they switch off for `prefers-reduced-motion` and the pinned or sticky effects switch off on small screens.
+
+## Content editor (`/admin`)
+
+Edit projects, images and site text at `/admin`, styled like the site. Publish commits `content/site.json` and any new images to GitHub in one commit; Vercel then rebuilds the site (about a minute).
+
+Vercel environment variables:
+
+- `ADMIN_PASSWORD`: the editor password (8+ characters).
+- `GITHUB_TOKEN`: a fine-grained GitHub token for this repository only, with **Contents: Read and write**.
+- Optional: `GITHUB_REPO` (default `ildaahaxhiu-cell/atomikstudio-website`), `GITHUB_BRANCH` (default `main`).
+
+Locally, set `ADMIN_PASSWORD` in `.env.local`; without `GITHUB_TOKEN` the editor writes to the files on disk.
